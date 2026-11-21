@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow Protocol — a top-down stealth game</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="wrap">
+  <div id="hud">
+    <span id="hud-level">SHADOW PROTOCOL</span>
+    <span id="hud-cores">◇◇◇ 0 / 3</span>
+    <span id="hud-eye" title="Detection"><span id="hud-eye-label">◉</span><span id="hud-eye-bar"><span id="hud-eye-fill"></span></span></span>
+    <span id="hud-alarm">ALARM ○○○</span>
+    <span id="hud-timer">0:00</span>
+  </div>
+  <div id="hud-objective">Recover 3 cores, then reach the exit</div>
+  <canvas id="game" width="960" height="600"></canvas>
+  <div id="hud-message"></div>
+  <div id="hud-hidden">◉ HIDDEN — guards cannot see you here</div>
+  <div id="menu">
+    <button id="btn-start">Start game</button>
+    <span id="level-select">
+      <button data-level="0">Level 1</button>
+      <button data-level="1">Level 2</button>
+      <button data-level="2">Level 3</button>
+    </span>
+    <span id="controls">WASD move · Shift sneak · E grab core · R restart · P pause · M mute</span>
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
