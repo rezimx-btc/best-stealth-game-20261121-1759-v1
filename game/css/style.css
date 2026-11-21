@@ -1,0 +1,98 @@
+/* Shadow Protocol — page and HUD styling. Dark facility look. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #070a12;
+  color: #dfe7f2;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+#wrap {
+  width: 960px;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 12px 8px 24px;
+}
+#hud {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 12px;
+  background: #101827;
+  border: 1px solid #26334a;
+  border-radius: 8px 8px 0 0;
+  font-size: 15px;
+}
+#hud-level { font-weight: 700; color: #40e6ff; letter-spacing: 1px; }
+#hud-cores { color: #40e6ff; font-weight: 700; letter-spacing: 2px; }
+#hud-eye { display: flex; align-items: center; gap: 6px; }
+#hud-eye-label { color: #ffd640; font-size: 18px; }
+#hud-eye-bar {
+  display: inline-block;
+  width: 110px;
+  height: 10px;
+  background: #1b2230;
+  border: 1px solid #3a4557;
+  border-radius: 5px;
+  overflow: hidden;
+}
+#hud-eye-fill { display: block; height: 100%; width: 0%; background: #ffd640; }
+#hud-eye.hot #hud-eye-label { color: #ff4030; }
+#hud-alarm { color: #8a97ad; letter-spacing: 1px; }
+#hud-alarm.lit { color: #ff9e2c; }
+#hud-timer { margin-left: auto; font-variant-numeric: tabular-nums; }
+#hud-objective {
+  padding: 6px 12px;
+  background: #0d1524;
+  border-left: 1px solid #26334a;
+  border-right: 1px solid #26334a;
+  color: #9fb2cc;
+  font-size: 14px;
+}
+#game {
+  display: block;
+  width: 960px;
+  max-width: 100%;
+  height: auto;
+  background: #1b2230;
+  border: 1px solid #26334a;
+}
+#hud-message {
+  min-height: 22px;
+  text-align: center;
+  color: #ffd640;
+  font-size: 15px;
+  padding-top: 6px;
+  transition: opacity 0.4s;
+}
+#hud-hidden {
+  text-align: center;
+  color: #9db8ff;
+  font-size: 14px;
+  visibility: hidden;
+  min-height: 20px;
+}
+#menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+button {
+  background: #16233a;
+  color: #dfe7f2;
+  border: 1px solid #3a4557;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 15px;
+  cursor: pointer;
+}
+button:hover { background: #1f3050; border-color: #40e6ff; }
+#btn-start { background: #0e3d22; border-color: #2eff78; color: #c8ffe0; font-weight: 700; }
+#controls { color: #8a97ad; font-size: 13px; margin-left: auto; }
+/* Page styling, second pass: small screens keep the canvas readable. */
+@media (max-width: 980px) {
+  #hud { flex-wrap: wrap; gap: 10px; }
+  #hud-timer { margin-left: 0; }
+  #controls { margin-left: 0; }
+}
