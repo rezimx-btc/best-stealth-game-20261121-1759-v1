@@ -1,15 +1,23 @@
 // main.ts — builds the make.fun dossier for SHADOW PROTOCOL.
-// Reads the repository directory and the output directory from the
-// environment, copies game/ and screenshots/ into the output directory,
-// builds the dossier with the kit's buildDossier, writes dossier.json,
-// and exits 0. Node 22, standard library only. Deterministic: run it
-// twice and the output bytes are identical.
+// Copies game/ and screenshots/ into the output directory, builds the
+// dossier with the kit's buildDossier, writes dossier.json, and exits 0.
+// Node 22, standard library only. Deterministic: two runs write
+// byte-identical dossier.json files.
 
 import { cpSync, mkdirSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
 
-const repoDir = resolve(process.env.MAKEFUN_REPO_DIR || process.cwd());
+// The repository directory: the grader's bot directory first, then the
+// legacy override, then the directory this file lives in. The working
+// directory is never used to find the repo, because the grader runs
+// this file from a different working directory.
+const repoDir = resolve(
+  process.env.MAKEFUN_BOT_DIR ||
+    process.env.MAKEFUN_REPO_DIR ||
+    dirname(fileURLToPath(import.meta.url)),
+);
 const outDir = resolve(process.env.MAKEFUN_OUTPUT_DIR || join(process.cwd(), 'output'));
 
 mkdirSync(outDir, { recursive: true });
@@ -25,6 +33,4 @@ const dossier = buildDossier(outDir, {
 
 writeFileSync(join(outDir, 'dossier.json'), dossier);
 
-// Exit code: success. The dossier is written; the coordinator handles
-// the GitHub repo and the submit from here.
 process.exitCode = 0;
